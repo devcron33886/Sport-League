@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Player extends Model
+class Game extends Model
 {
     use HasFactory,SoftDeletes;
 
-    public $table='players';
+    public $table='games';
 
     protected $dates=[
         'created_at',
@@ -19,18 +19,20 @@ class Player extends Model
     ];
 
     protected $fillable=[
-        'team_id',
-        'name',
-        'mobile',
-        'address',
-        'nationality',
-        'age',
-        'sex'
+        'start_time',
+        'result1',
+        'result2',
+        'team1_id',
+        'team2_id',
     ];
 
-    public function team()
+    public function team1()
+    {
+        return $this->belongsTo(Team::class);
+
+    }
+    public function team2()
     {
         return $this->belongsTo(Team::class);
     }
-
 }
